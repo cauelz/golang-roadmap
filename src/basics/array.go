@@ -1,8 +1,5 @@
 package main
 
-func main() {	
-	array()
-}
 func array() {
 	// Arrays in Go are fixed in size, which means that we need to declare the size of the array
 	// when we declare it. We can use the following syntax to declare an array:
