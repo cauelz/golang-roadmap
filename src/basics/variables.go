@@ -10,7 +10,7 @@ import "fmt"
 // and we can't use the := syntax
 var deckSize int
 
-func main() {
+func variables() {
 
 	// deckSize can be initialized here, but it can also be initialized outside of the main function
 	deckSize = 52
