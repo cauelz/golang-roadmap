@@ -20,4 +20,8 @@ func main() {
 
 	fmt.Println("\n\n\nSaving deck to file...")
 	cards.saveToFile("my_deck")
+
+	fmt.Println("\n\n\nReading deck from file...")
+	deckFromFile := newDeckFromFile("my_deck")
+	deckFromFile.print()
 }
