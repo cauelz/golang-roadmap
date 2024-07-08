@@ -6,4 +6,8 @@ func main() {
 	variables()
 
 	printState()
+
+	variables()
+
+	array()
 }
