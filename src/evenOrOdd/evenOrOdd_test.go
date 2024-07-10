@@ -9,4 +9,10 @@ func TestEvenOrOdd(t *testing.T) {
 	if result != "Odd" {
 		t.Errorf("Expected Odd, got %v", result)
 	}
+
+	result = evenOrOdd(4)
+
+	if result != "Even" {
+		t.Errorf("Expected Even, got %v", result)
+	}
 }
