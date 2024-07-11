@@ -11,5 +11,13 @@ type person struct {
 	lastName string
 	age int
 	isAdult bool
+	contactInfo contact	// Embedded struct
+}
+
+type contact struct {
+
+	email string
+	phone string
+	zipCode int
 }
 
