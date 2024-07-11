@@ -1,5 +1,7 @@
 package structbasics
 
+import "fmt"
+
 // What is a Struct in Golang?
 // A struct is a user-defined type that contains a collection of named fields/properties.
 // It is used to group related data together to form a single unit.
@@ -11,6 +13,8 @@ type person struct {
 	lastName string
 	age int
 	isAdult bool
+	// It is possible to embed a struct information in another struct with the following syntax:
+	// contact	// Embedded struct without a field name
 	contactInfo contact	// Embedded struct
 }
 
@@ -21,3 +25,10 @@ type contact struct {
 	zipCode int
 }
 
+func (p person) updateName(newFirstName string) {
+	p.firstName = newFirstName
+}
+
+func (p person) print() {
+	fmt.Println(p)
+}

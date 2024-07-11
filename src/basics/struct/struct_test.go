@@ -83,7 +83,13 @@ func TestNewPersonWithContact(t *testing.T) {
 	if p.contactInfo.zipCode == 0 {
 		t.Errorf("Expected filled zip code, got %v", p.contactInfo.zipCode)
 	}
-
 }
 
+func TestPrint(t *testing.T) {
+
+	p := person{firstName: "John", lastName: "Doe"}
+
+	fmt.Println("--- Print person ---")
+	p.print()
+}
 
