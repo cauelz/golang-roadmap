@@ -1,5 +1,8 @@
 package main
 
+import (
+	"basics/arrays"
+)
 
 func main() {
 
@@ -9,5 +12,5 @@ func main() {
 
 	variables()
 
-	array()
+	arrays.Array()
 }

@@ -1,6 +1,6 @@
-package main
+package arrays
 
-func array() {
+func Array() {
 	// Arrays in Go are fixed in size, which means that we need to declare the size of the array
 	// when we declare it. We can use the following syntax to declare an array:
 	// var <variable_name> [<size>] <type> = [<size>]{<value1>, <value2>, ...}
