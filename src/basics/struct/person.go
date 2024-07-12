@@ -25,8 +25,8 @@ type contact struct {
 	zipCode int
 }
 
-func (p person) updateName(newFirstName string) {
-	p.firstName = newFirstName
+func (personPointer *person) updateName(newFirstName string) {
+	(*personPointer).firstName = newFirstName
 }
 
 func (p person) print() {

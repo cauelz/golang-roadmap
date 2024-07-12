@@ -93,3 +93,20 @@ func TestPrint(t *testing.T) {
 	p.print()
 }
 
+func TestUpdateName(t *testing.T) {
+
+	p := person{firstName: "John", lastName: "Doe"}
+
+	fmt.Println("--- Update name ---")
+	fmt.Println("Before update:")
+	fmt.Println(p)
+
+	p.updateName("Jane")
+
+	fmt.Println("After update:")
+	fmt.Println(p)
+
+	if p.firstName != "Jane" {
+		t.Errorf("Expected Jane, got %v", p.firstName)
+	}
+}
