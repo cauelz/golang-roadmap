@@ -48,7 +48,7 @@ func calculateEBT(revenue, expenses float64) (ebt float64) {
 }
 
 func calculateProfit(ebt, taxRate float64) (profit float64) {
-	profit = ebt * (1 - taxRate)
+	profit = ebt * (1 - taxRate/100)
 	return profit
 }
 
