@@ -40,6 +40,9 @@ func calculateFutureValue(investmentAmount, interestRate, years float64) float64
 	return investmentAmount * math.Pow((1+interestRate/100), years)
 }
 
-func calculateFutureRealValue(futureValue, inflationRate, years float64) float64 {
-	return futureValue / math.Pow((1+inflationRate/100), years)
+func calculateFutureRealValue(futureValue, inflationRate, years float64) (futureRealValue float64) {
+
+	futureRealValue = futureValue / math.Pow((1+inflationRate/100), years)
+
+	return futureRealValue
 }
