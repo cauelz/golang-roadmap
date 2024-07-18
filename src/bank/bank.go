@@ -1,15 +1,55 @@
 package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+	"os"
+	"strconv"
+)
 
 type Account struct {
 	AccountNumber int
 	AccountBalance float64
 }
 
+func getBalanceFromFile() (float64, error) {
+	data, err := os.ReadFile("balance.txt")
+
+	if err != nil {
+		return 0, errors.New("Error reading file!")
+	}
+
+	balanceText := string(data)
+	balance, err := strconv.ParseFloat(balanceText, 64)
+
+	if err != nil {
+		return 0, errors.New("Error parsing float!")
+	}
+
+	return balance, nil
+}
+
+func writeBalanceToFile(balance float64) {
+	fmt.Println("Writing Account Balance to File...")
+	balanceText := fmt.Sprint(balance)
+	// What is this file permission?
+	// 0644 is a file permission in Unix-like systems. It is a 3-digit octal number.
+	// The first digit is the owner's permission, the second digit is the group's permission, and the third digit is the others' permission.
+	os.WriteFile("balance.txt", []byte(balanceText), 0644)
+}
+
 func main() {
 
-	var accountBalance float64 = 0.0
+	var accountBalance, err = getBalanceFromFile()
+
+	if err != nil {
+		fmt.Println("Error getting balance from file!")
+		fmt.Println(err)
+		fmt.Println("---------")
+		// When to use panic?
+		// panic is used to terminate the program immediately. It is used when a function returns an error that the program cannot recover from.
+		//panic(err)
+	}	
 	
 	fmt.Println("Welcome to the Go Bank!")
 	// Conditional for loops in Go can be written as follows:
@@ -53,6 +93,7 @@ func main() {
 			}
 	
 			accountBalance += depositAmount
+			writeBalanceToFile(accountBalance)
 			fmt.Println("Deposit Successful!")
 		case 3:
 			fmt.Println("Enter Withdrawal Amount:")
@@ -76,7 +117,7 @@ func main() {
 			fmt.Println("Account Balance: ", accountBalance)
 		case 5:
 			fmt.Println("Thank you for using Go Bank!")
-			continue
+			return
 		default:
 			fmt.Println("Invalid Option!")
 		}
