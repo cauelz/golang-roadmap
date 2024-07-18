@@ -31,7 +31,9 @@ func main() {
 		var option int
 		fmt.Scanln(&option)
 	
-		if option == 1 {
+		switch option {
+
+		case 1:
 			fmt.Println("Enter Account Number:")
 			var accountNumber int
 			fmt.Scanln(&accountNumber)
@@ -40,20 +42,19 @@ func main() {
 			fmt.Scanln(&initialDeposit)
 			accountBalance = initialDeposit
 			fmt.Println("Account Created Successfully!")
-		} else if option == 2 {
+		case 2:
 			fmt.Println("Enter Deposit Amount:")
 			var depositAmount float64
 			fmt.Scanln(&depositAmount)
 	
 			if depositAmount <= 0 {
 				fmt.Println("Deposit Amount should be greater than 0!")
-				return
+				continue
 			}
 	
 			accountBalance += depositAmount
 			fmt.Println("Deposit Successful!")
-			
-		} else if option == 3 {
+		case 3:
 			fmt.Println("Enter Withdrawal Amount:")
 			var withdrawalAmount float64
 			fmt.Scanln(&withdrawalAmount)
@@ -71,17 +72,15 @@ func main() {
 				accountBalance -= withdrawalAmount
 				fmt.Println("Withdrawal Successful!")
 			}
-			
-		} else if option == 4 {
+		case 4:
 			fmt.Println("Account Balance: ", accountBalance)
-		} else if option == 5 {
+		case 5:
 			fmt.Println("Thank you for using Go Bank!")
-			break
-		} else {
+			continue
+		default:
 			fmt.Println("Invalid Option!")
 		}
 	
 	}
 
-	fmt.Println("Thank you for using Go Bank!")
 }
