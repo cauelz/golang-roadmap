@@ -1,4 +1,4 @@
-package structbasics
+package struct_basics
 
 import "fmt"
 
@@ -19,7 +19,6 @@ type person struct {
 }
 
 type contact struct {
-
 	email string
 	phone string
 	zipCode int
@@ -31,4 +30,11 @@ func (personPointer *person) updateName(newFirstName string) {
 
 func (p person) print() {
 	fmt.Println(p)
+}
+
+func getUserData(promptText string) string {
+	fmt.Print(promptText)
+	var input string
+	fmt.Scan(&input)
+	return input
 }

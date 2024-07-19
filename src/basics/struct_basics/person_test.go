@@ -1,4 +1,4 @@
-package structbasics
+package struct_basics
 
 import (
 	"fmt"
@@ -109,4 +109,8 @@ func TestUpdateName(t *testing.T) {
 	if p.firstName != "Jane" {
 		t.Errorf("Expected Jane, got %v", p.firstName)
 	}
+}
+
+func TestGettinUserInputAndCreatePerson(t *testing.T) {
+
 }
