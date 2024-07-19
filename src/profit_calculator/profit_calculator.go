@@ -1,20 +1,26 @@
 package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+	"os"
+)
 
 
 
 func main() {
 
-	var revenue float64
-	var expenses float64
-	var taxRate float64
+    revenue, revenueError := getUserInput("Enter revenue: ")
 
-	revenue = getUserInput("Enter revenue: ")
+    expenses, expensesError := getUserInput("Enter expenses: ")
 
-	expenses = getUserInput("Enter expenses: ")
+    taxRate, taxrateError := getUserInput("Enter tax rate: ")
 
-	taxRate = getUserInput("Enter tax rate: ")
+    if revenueError != nil || expensesError != nil || taxrateError != nil {
+        fmt.Println("Error ", revenueError, expensesError, taxrateError)
+		// panic(revenueError) can be used to terminate the program immediately and print the error message
+        return
+    }
 
 	ebt, profit, ratio := calculateFinancials(revenue, expenses, taxRate)
 
@@ -34,12 +40,37 @@ func main() {
 	fmt.Println("profitString: ", profitString)
 	fmt.Println("ratioString: ", ratioString)
 
+	err := saveToFile("financials.txt", ebtString+profitString+ratioString)
+
+	if err != nil {
+		fmt.Println("Error saving to file:", err)
+		return
+	}
+
 }
 
-func getUserInput(text string) (input float64) {
+func saveToFile(filename, data string) (err error) {
+
+	err = os.WriteFile(filename, []byte(data), 0644)
+
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func getUserInput(text string) (input float64, err error) {
+
 	fmt.Print(text)
 	fmt.Scan(&input)
-	return input
+
+	if input <= 0 {
+		err = errors.New("invalid input! please enter a positive number")
+
+		return 0, err
+	}
+
+	return input, nil
 }
 
 func calculateEBT(revenue, expenses float64) (ebt float64) {
