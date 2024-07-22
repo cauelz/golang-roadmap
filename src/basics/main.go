@@ -6,11 +6,5 @@ import (
 
 func main() {
 
-	variables()
-
-	printState()
-
-	variables()
-
 	arrays.Array()
 }
