@@ -49,14 +49,3 @@ func New(title, body string) (*Note, error) {
 		CreatedDate: time.Now(),
 	}, nil
 }
-
-func toJson(notes []*Note) (string, error) {
-
-	notesJson, err := json.Marshal(notes)
-
-	if err != nil {
-		return "", err
-	}
-
-	return string(notesJson), nil
-}
