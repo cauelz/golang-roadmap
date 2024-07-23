@@ -1,1 +1,4 @@
 src/cards/my_deck
+src/notepad_project/*.json
+src/images_download/*.csv
+
