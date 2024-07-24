@@ -4,12 +4,37 @@ import (
 	"bufio"
 	"fmt"
 	"notepad_project/note"
+	"notepad_project/todo"
 	"os"
 	"strings"
 )
 
+// Interface convenctions in Go:
+// 1. Name the interface with an -er suffix.
+// 2. The method name should be the name of the interface with an -er suffix.
+type saver interface {
+	Save() error
+}
+
+// type displayer interface {
+// 	Display()
+// }
+
+type outputtable interface {
+	saver
+	Display()
+}
+
 func main() {
 	title, body := getNoteData()
+	content := ReadDataFromUser("Enter the content of the todo: ")
+
+	todo, err := todo.New(content)
+
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 
 	note, err := note.New(title, body)
 
@@ -18,16 +43,46 @@ func main() {
 		return
 	}
 
-	note.Display()
-
-	err = note.Save()
+	err = outputData(todo)
 
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
-	fmt.Println("Note saved successfully.")
+	err = outputData(note)
+
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+
+}
+
+func outputData(data outputtable) error {
+	err := data.Save()
+
+	if err != nil {
+		fmt.Println(err)
+		return err
+	}
+
+	data.Dispplay()
+	return nil
+}
+
+func saveData(data saver) error {
+	err := data.Save()
+
+	if err != nil {
+		fmt.Println(err)
+		return err
+	}
+
+	fmt.Println("Data saved successfully.")
+
+	return nil
 }
 
 func getNoteData() (string, string) {
