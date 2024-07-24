@@ -60,6 +60,22 @@ func main() {
 
 }
 
+// When using the alias Any, it is possible to accept any type of value as paramether.
+// the keyword "any" is a alias for the following structure = interface{};
+func printAnything(data any) {
+
+	switch data.(type) {
+	case int:
+		fmt.Println("Print Int: ", data)
+	case float64:
+		fmt.Println("Print Float64: ", data)
+	default:
+		fmt.Println("Print any type: ", data)
+	}
+
+	fmt.Println(data)
+}
+
 func outputData(data outputtable) error {
 	err := data.Save()
 
