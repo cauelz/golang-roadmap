@@ -24,4 +24,38 @@ func Array() {
 	for i, number := range numbers {
 		println(i, number)
 	}
+
+	// The example above shows us that an Array is a fixed-size collection of elements of any type.
+	// This is possible due because we are using the "any" type, which is a special type in Go that can
+	// hold any value. This is useful when we want to create a collection of elements of different types.
+	var anyTypeArray [5]any = [5]any{1, "two", 3.0, true, []int{1, 2, 3}}
+
+	for _, value := range anyTypeArray {
+		println(value)
+	}
+
+	// We can also create a multi-dimensional array in Go. A multi-dimensional array is an array of arrays.
+	// We can use the following syntax to declare a multi-dimensional array:
+	// var <variable_name> [<size1>][<size2>]...<type> = [<size1>][<size2>]{...}
+	var multiDimArray [2][2]int = [2][2]int{{1, 2}, {3, 4}}
+
+	for i, row := range multiDimArray {
+		for j, number := range row {
+			println(i, j, number)
+		}
+	}
+
+	// We can also create an array of structs in Go. A struct is a user-defined type that represents a collection
+	// of fields. We can use the following syntax to declare an array of structs:
+	// var <variable_name> [<size>]<struct_name> = [<size>]<struct_name>{<struct1>, <struct2>, ...}
+	type Person struct {
+		name string
+		age  int
+	}
+
+	var people [2]Person = [2]Person{{"Alice", 25}, {"Bob", 30}}
+
+	for _, person := range people {
+		println(person.name, person.age)
+	}
 }
