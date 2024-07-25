@@ -107,5 +107,52 @@ func ComparingArraysWithSlices() {
 	//This happens because the slice is a reference to the array, so when we slice the slice, we are slicing the array. 
 	//And the capacity of the slice is the total number of elements in the array starting from the index where the slice starts to the end of the array
 
+}
 
+func Slices() {
+	// Slices in Go are a variable-size collection of elements of the same type. 
+	// We can use the following syntax to declare a slice:
+	// var <variable_name> []<type> = []<type>{<value1>, <value2>, ...}
+	// We can also use the short variable declaration syntax to declare a slice:
+	// <variable_name> := []<type>{<value1>, <value2>, ...}
+
+	// Let's declare a slice of integers
+	var numbers []int = []int{1, 2, 3, 4, 5}
+	fmt.Println("Numbers Slice: ", numbers)
+
+	//If we try to access an index that is out of bounds, we will get a runtime error
+	//fmt.Println(numbers[10])
+
+	// We can use the make function to create a slice with a specific length and capacity
+	// The syntax of the make function is make([]<type>, <length>, <capacity>)
+	// The length is the number of elements in the slice
+	// The capacity is the total number of elements in the slice
+	// The capacity is optional, and if not provided, it will default to the length
+	// The make function is useful when we want to create a slice with a specific length and capacity
+	numbers = make([]int, 5, 10)
+	fmt.Println("Numbers Slice with Length 5 and Capacity 10: ", numbers)
+
+	// We can also create a slice from an array. The last index of the slice is exclusive, 
+	// which means that the element at the last index is not included in the slice
+	// The syntax of the slice is <array>[<start>:<end>]
+	// A few variations of the slicing syntax:
+	// <array>[:<end>] - slice from the beginning to the end
+	// <array>[<start>:] - slice from the start to the end
+	// Let's create a slice from an array
+	var numbersArray [5]int = [5]int{1, 2, 3, 4, 5}
+	numbers = numbersArray[1:3]
+	fmt.Println("Numbers Slice from 1 to 3: ", numbers)
+
+	// We can append elements to a slice using the append function
+	// The syntax of the append function is append(<slice>, <value1>, <value2>, ...)
+	// The append function returns a new slice with the elements appended to it
+	// Let's append elements to the numbers slice
+	numbers = append(numbers, 6, 7, 8)
+	fmt.Println("Numbers Slice with Elements Appended: ",numbers)
+
+	// We can remove an item from a slice using the append function
+	// The syntax of the append function is append(<slice>[:<index>], <slice>[<index>+1:]...)
+	// Obs: The ... operator is used to unpack the elements of the slice, like the spread operator in JavaScript
+	// Let's remove the element at index 2 from the numbers slice
+	numbers = append(numbers[:2], numbers[3:]...)
 }
