@@ -83,3 +83,31 @@ func TestOrderMap(t *testing.T) {
 		fmt.Println("Key: ", key, "Value: ", value)
 	}
 }
+
+func TestMapsWithGenerics(t *testing.T) {
+	
+	// How to create a map with generics?
+	// var mapName map[keyType]valueType is the syntax to create a map.
+	// orders := make(map[any]any) is another way to create a map.
+	fmt.Println("--- Creating a map with generics ---")
+	orders := make(map[any]any)
+	orders[1] = Order{OrderID: 1, OrderDate: "2021-01-01", OrderAmount: 100.00}
+	orders[2] = Order{OrderID: 2, OrderDate: "2021-01-02", OrderAmount: 200.00}
+	orders[3] = Order{OrderID: 3, OrderDate: "2021-01-03", OrderAmount: 300.00}
+	orders[4] = "Hello"
+	orders[5] = 100
+	fmt.Println("Orders: ", orders)
+	// How to access a value in a map with generics?
+	fmt.Println("--- Accessing a value in a map with generics ---")
+	fmt.Println("Order 1: ", orders[1])
+	fmt.Println("Order 2: ", orders[2])
+	fmt.Println("Order 4: ", orders[4])
+	fmt.Println("Order 5: ", orders[5])
+
+	// How to iterate over a map with generics?
+	fmt.Println("--- Iterating over a map with generics ---")
+	for key, value := range orders {
+		fmt.Println("Key: ", key, "Value: ", value)
+	}
+
+}
