@@ -15,6 +15,12 @@ func TransformNumbers(numbers *[]int, transformerFn TransformerFn) []int {
 	return transformedNumbers
 }
 
+func CreateTransformerFn(factor int) TransformerFn {
+	return func(number int) int {
+		return number * factor
+	}
+}
+
 // func getTransformerFn(transformer string) TransformerFn {
 // 	switch transformer {
 // 	case "double":
