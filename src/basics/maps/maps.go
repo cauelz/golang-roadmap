@@ -13,7 +13,7 @@ func CreatePersonMap(n int) personMappedByName {
 	return make(personMappedByName, n)
 }
 
-func (pm personMappedByName) AddPerson(key string, p Person) {
+func (pm personMappedByName) AddPerson(key string, p Person) {clea
 	pm[key] = p
 }
 
